@@ -6,9 +6,6 @@
     function setOwnership(){
       document.getElementById("owership_rate").innerHTML = "Your ownership: 5%";
     }
-    function goRentPage(){
-      window.location.href = "rent-pay-page.html";
-    }
   </script>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -63,7 +60,7 @@
     }
 
     function onClickCallDapp() {
-        var value = document.getElementById("inputAmount2").value;
+        var value = document.getElementById("inputAmount2").value / 10000.0;
         var callFunction = document.getElementById("inputFunction").value;
         var callArgs = document.getElementById("inputParameter").value.trim(); //in the form of ["args"]
         nebPay.call(to, value, callFunction, callArgs, {
@@ -140,15 +137,10 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)" onclick="goRentPage()">
-              <i class="material-icons">content_paste</i> Distribute Rent
-            </a>
-          </li>
-<!--           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
               <i class="material-icons">cloud_download</i> Download
             </a>
-          </li> -->
+          </li>
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
               <i class="fa fa-twitter"></i>
@@ -172,32 +164,25 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-                                          <h2 class="card-category text-success">
-                                    <i class="material-icons">trending_up</i> 6.5% yield
-                                </h2>
-          <h1 class="title">Starbucks.</h1>
+          <h1 class="title">Starbucks</h1>
           <h4>San Francisco, CA, 94102</h4>
           <br>
 				  
 <div>
     <div>
-        <input type="hidden" id="inputAmount2"  size="10" value="0.0001">
+        <label for="inputAmount2">Distribute Rent: </label>
+        <input id="inputAmount2"  size="10" value="5.0">
     </div>
     <div>
-        <input type="hidden"  id="inputFunction" style="resize:both" value="purchase">
+        <input type="hidden"  id="inputFunction" style="resize:both" value="distributeRent">
     </div>
     <div>
         <input type="hidden"  id="inputParameter" style="resize:both" value="">
     </div>
     <div>
-        <button type="button" id="buttonCallDapp" class="btn btn-primary btn-raised btn-lg" onclick="onClickCallDapp()">Purchase a Unit</button>
+        <button type="button" id="buttonCallDapp" class="btn btn-primary btn-raised btn-lg" onclick="onClickCallDapp()">Pay Rent</button>
     </div>
     <p id="callResult" style="color:#FFFFFF;font-size:18px;font-weight:bold"></p>
-	<!--
-    <div>
-        <button type="button" id="buttonSimulateCall" class="btn btn-block" onclick="onClickSimulateCall()">Simple Call</button>
-    </div>
-	-->
 </div>
 <p id="simulateCallResult" style="color:#FFFFFF;font-size:18px;font-weight:bold"></p>
 				  
@@ -206,131 +191,6 @@
     </div>
   </div>
 
-  <div class="main main-raised">
-    <div class="container">
-
-      <div class="section text-center">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto">
-            <h2 class="title" id="owership_rate" style="{margin-bottom:0;}">Your ownership: 0%</h2>
-            <h5 id="rent_income" ><b>Rental income $1000 per month</b></h5>
-          </div>
-        </div>
-        <div class="features">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="info">
-                <div class="icon icon-info">
-                  <i class="material-icons">show_chart</i>
-                </div>
-                <h4 class="info-title">6.5% Yield, investment grade credit</h4>
-                <p>Every $5000 invested will produce you $350 in income every month</p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="info">
-                <div class="icon icon-success">
-                  <i class="material-icons">attach_money</i>
-                </div>
-                <h4 class="info-title">Rental Income</h4>
-                <p>This property has generated rental income for 3 months, average monthly income: $1,000.
-</p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="info">
-                <div class="icon icon-success">
-                  <i class="material-icons">store</i>
-                </div>
-                <h4 class="info-title">Long term net lease</h4>
-                <p>With this legal agreement you will receive income for next 10 years on the property.  Absolute NNN to starbucks, 10 year term with 10% rent increase after 5 years. two 5 years option to extend.
-</p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="info">
-                <div class="icon icon-info">
-                  <i class="material-icons">account_balance</i>
-                </div>
-                <h4 class="info-title">Passive income</h4>
-                <p>Money deposited into your ethereum wallet with no hassles, and no management</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="section text-center">
-        <h2 class="title">Investors</h2>
-        <div class="team">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="team-player">
-                <div class="card card-plain">
-                  <div class="col-md-6 ml-auto mr-auto">
-                    <img src="../assets/img/faces/avatar.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
-                  </div>
-                  <h4 class="card-title">Gigi Hadid
-                    <br>
-                    <small class="card-description text-muted">Brazil</small>
-                  </h4>
-                  <div class="card-body">
-                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                      <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="team-player">
-                <div class="card card-plain">
-                  <div class="col-md-6 ml-auto mr-auto">
-                    <img src="../assets/img/faces/christian.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
-                  </div>
-                  <h4 class="card-title">Christian Louboutin
-                    <br>
-                    <small class="card-description text-muted">United States</small>
-                  </h4>
-                  <div class="card-body">
-                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                      <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="team-player">
-                <div class="card card-plain">
-                  <div class="col-md-6 ml-auto mr-auto">
-                    <img src="../assets/img/anon.png" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
-                  </div>
-                  <h4 class="card-title">Anonymous
-                    <br>
-                    <small class="card-description text-muted">Unknown</small>
-                  </h4>
-                  <div class="card-body">
-                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                      <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="section section-contacts">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto">
-              <div class="row">
-                <div class="col-md-4 ml-auto mr-auto text-center">
-
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <footer class="footer footer-default">
     <div class="container">
       <nav class="float-left">
