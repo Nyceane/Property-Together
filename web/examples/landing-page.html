@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+  <script type="text/javascript">
+    function setOwnership(){
+      document.getElementById("owership_rate").innerHTML = "Your ownership: 5%";
+    }
+  </script>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -80,7 +85,7 @@
           <h1 class="title">Starbucks.</h1>
           <h4>San Francisco, CA, 94102</h4>
           <br>
-                  <button class="btn btn-primary btn-raised btn-lg">
+                  <button class="btn btn-primary btn-raised btn-lg" onclick="setOwnership()">
                     Invest 5 ETH
                   </button>
         </div>
@@ -94,7 +99,7 @@
       <div class="section text-center">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
-            <h2 class="title">Your ownership: 0%</h2>
+            <h2 class="title" id="owership_rate">Your ownership: 0%</h2>
             <h5 class="description">Your current ownership is 0%</h5>
           </div>
         </div>
