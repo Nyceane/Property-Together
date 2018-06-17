@@ -60,7 +60,7 @@
     }
 
     function onClickCallDapp() {
-        var value = document.getElementById("inputAmount2").value;
+        var value = document.getElementById("inputAmount2").value / 10000.0;
         var callFunction = document.getElementById("inputFunction").value;
         var callArgs = document.getElementById("inputParameter").value.trim(); //in the form of ["args"]
         nebPay.call(to, value, callFunction, callArgs, {
@@ -171,7 +171,7 @@
 <div>
     <div>
         <label for="inputAmount2">Distribute Rent: </label>
-        <input id="inputAmount2"  size="10" value="0.00005">
+        <input id="inputAmount2"  size="10" value="5.0">
     </div>
     <div>
         <input type="hidden"  id="inputFunction" style="resize:both" value="distributeRent">
