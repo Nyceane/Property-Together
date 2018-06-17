@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>send transaction</title>
+    <link rel=stylesheet href=../bc/html/css/base.css>
+    <link rel=stylesheet href=../bc/html/css/ui-block.css>
+    <script src=nebPay.js></script>     <!-- you should add nebPay.js to you Dapp page><!-->
+</head>
+
+<style>
+</style>
+
+<body>
+
+<script>
+    var NebPay = require("nebpay");
+    var nebPay = new NebPay();
+    var to = "n1h7FsJngkDRE2kcP7wpvxrLBNAzerQyQvF";    
+
+    //to check if the extension is installed
+    //if the extension is installed, var "webExtensionWallet" will be injected in to web page
+    if(typeof(webExtensionWallet) === "undefined"){
+        alert ("Extension wallet is not installed, please install it first.")
+    }
+
+    //send transaction to another address
+    function onClickSendTx() {
+        var amount = document.getElementById("inputAmount").value;
+        nebPay.pay(to, amount, {
+            qrcode: {
+                showQRCode: true
+            },
+            goods: {
+                name: "test",
+                desc: "test goods"
+            },
+            //callback: cbSendTx
+            listener: cbSendTx
+        });
+    }
+    //callback function of onClickSendTx, to handle the transaction response
+    function cbSendTx(resp){
+        console.log("callback resp: " + JSON.stringify(resp))
+        document.getElementById("txResult").innerHTML = "send transaction result:\n" +  JSON.stringify(resp)
+    }
+
+    function onClickCallDapp() {
+        var value = document.getElementById("inputAmount2").value;
+        var callFunction = document.getElementById("inputFunction").value;
+        var callArgs = document.getElementById("inputParameter").value.trim(); //in the form of ["args"]
+        nebPay.call(to, value, callFunction, callArgs, {
+            qrcode: {
+                showQRCode: true
+            },
+            goods: {
+                name: "test",
+                desc: "test goods"
+            },
+            //callback: cbCallDapp
+            listener: cbCallDapp
+        });
+    }
+
+    function cbCallDapp(resp){
+        console.log("callback resp: " + JSON.stringify(resp))
+        document.getElementById("callResult").innerHTML = "call Dapp result:\n" +  JSON.stringify(resp)
+    }
+
+    function onClickSimulateCall() {
+        var value = document.getElementById("inputAmount2").value;
+        var callFunction = document.getElementById("inputFunction").value;
+        var callArgs = document.getElementById("inputParameter").value.trim(); //in the form of ["args"]
+        nebPay.simulateCall(to, value, callFunction, callArgs, {
+            qrcode: {
+                showQRCode: true
+            },
+            goods: {
+                name: "test",
+                desc: "test goods"
+            },
+            listener: cbSimulateCall
+        });
+    }
+
+    function cbSimulateCall(resp){
+        console.log("callback resp: " + JSON.stringify(resp))
+        document.getElementById("simulateCallResult").innerHTML = "simulate call result:\n" +  JSON.stringify(resp)
+    }
+
+</script>
+
+<div >
+
+<h3>2 Call a smart contract</h3>
+<p>Input your smart contract address and parameters </p>
+    <div>
+        <label for="inputAmount2">amount in NAS: </label>
+        <input id="inputAmount2"  size="10" >
+    </div>
+    <div>
+        <label for="inputFunction">input function name:</label>
+        <input id="inputFunction" style="resize:both" >
+    </div>
+    <div>
+        <label for="inputParameter">input parameters:</label>
+        <input id="inputParameter" style="resize:both" >
+    </div>
+    <div>
+        <button type="button" id="buttonCallDapp" class="btn btn-block" onclick="onClickCallDapp()">Make Transaction Call</button>
+    </div>
+    <p id="callResult" style="color:#FF0000;font-size:12px;"></p>
+    <div>
+        <button type="button" id="buttonSimulateCall" class="btn btn-block" onclick="onClickSimulateCall()">Simple Call</button>
+    </div>
+</div>
+<p id="simulateCallResult" style="color:#FF0000;font-size:12px;"></p>
+
+</body>
+</html>
