@@ -84,7 +84,7 @@
         console.log("callback resp: " + respJson)
         document.getElementById("callResult").innerHTML = "DApp call result:<br>\n" +  respJson;
 		if (!respJson.includes("rejected")) {
-      setTimeout(setTransactionSuccess(), 31000);
+      setTimeout(setTransactionSuccess, 31000);
 		}
     }
 
