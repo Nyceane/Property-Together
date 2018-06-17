@@ -80,7 +80,8 @@
 		var respJson = JSON.stringify(resp);
         console.log("callback resp: " + respJson)
         document.getElementById("callResult").innerHTML = "DApp call result:<br>\n" +  respJson;
-		setOwnership();
+		if (!respJson.includes("rejected"))
+	    	setOwnership();
     }
 
     function onClickSimulateCall() {
